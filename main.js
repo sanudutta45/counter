@@ -1,27 +1,18 @@
-document.getElementById("btn-increment").addEventListener('click',increment);
-document.getElementById("btn-decrement").addEventListener('click',decrement);
-document.getElementById("btn-reset").addEventListener('click',reset);
+//inital value
+var count =0;
 
-function increment(e){
-    const counterValue = parseInt(document.querySelector(".value").innerText) + 1;
-    valueCheaker(counterValue);
-    document.querySelector(".value").innerText = counterValue;
-}
+const value = document.querySelector(".value");
 
-function decrement(e){
-    const counterValue = parseInt(document.querySelector(".value").innerText) -1;
-    valueCheaker(counterValue);
-    document.querySelector(".value").innerText = counterValue;
-}
+document.querySelector(".btn-wrapper").addEventListener('click',function(e){
+ if(e.target.classList.contains("btn-increment")) count++;
+ else if(e.target.classList.contains("btn-decrement")) count--;
+ else if(e.target.classList.contains("btn-reset")) count =0;
+ valueCheaker(count);
+ value.innerText = count;
+});
 
-function reset(e){
-    const counterValue = document.querySelector(".value");
-    counterValue.style.color = "black";
-    document.querySelector(".value").innerText = 0;
-}
-
-function valueCheaker(value){
-    if(value<0) document.querySelector(".value").style.color = "red";
-    else if(value>0) document.querySelector(".value").style.color = "green";
-    else document.querySelector(".value").style.color = "black";
+function valueCheaker(count){
+    if(count>0) value.style.color = "green";
+    else if(count<0) value.style.color = "red";
+    else value.style.color = "black";
 }
